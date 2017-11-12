@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<robot name="lb01" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find lb01_description)/urdf/base/base.urdf.xacro"/>
+  <xacro:include filename="$(find lb01_description)/urdf/legs/wheel/wheel.urdf.xacro"/>
+  <xacro:include filename="$(find lb01_description)/urdf/legs/bogie/bogie.urdf.xacro"/>
+  <xacro:include filename="$(find lb01_description)/urdf/legs/rocker/rocker.urdf.xacro"/>
+
+
+  <!-- =============== Link & Joint =============== -->
+  <!-- Base -->
+  <link name="base_footprint"/>
+  <xacro:base_v0 parent="base_footprint">
+	<origin xyz="0 0 0.15497"/>
+  </xacro:base_v0>
+
+  <!-- Legs -->
+  <!-- Right -->
+  <!-- Rocker -->
+  <xacro:rocker_v0 prefix="right">
+    <origin xyz="0.045 -0.077 0" rpy="${-M_PI/2} 0 0"/>
+    <axis xyz="0 0 1"/>
+  </xacro:rocker_v0>
+  <!-- Bogie -->
+  <xacro:bogie_v0 prefix="right">
+    <origin xyz="0.125 0.035 -0.008" rpy="0 0 ${M_PI}"/>
+    <axis xyz="0 0 1"/>
+  </xacro:bogie_v0>
+  <!-- Wheel -->
+  <xacro:wheel_v0 prefix="right_front" parent="right_bogie_link">
+    <origin xyz="-0.125 -0.070 -0.0295" rpy="0 0 ${-M_PI/2}"/>
+    <axis xyz="0 0 1"/>
+  </xacro:wheel_v0>
+  <xacro:wheel_v0 prefix="right_middle" parent="right_bogie_link">
+    <origin xyz="0.125 -0.070 -0.0295" rpy="0 0 ${-M_PI/2}"/>
+    <axis xyz="0 0 1"/>
+  </xacro:wheel_v0>
+  <xacro:wheel_v0 prefix="right_rear" parent="right_rocker_link">
+    <origin xyz="-0.250 0.105 0.0325" rpy="0 0 ${M_PI/2}"/>
+    <axis xyz="0 0 1"/>
+  </xacro:wheel_v0>
+
+  <!-- Left -->
+  <!-- Rocker -->
+  <xacro:rocker_v0 prefix="left">
+    <origin xyz="0.045 0.077 0" rpy="${M_PI/2} 0 0"/>
+    <axis xyz="0 0 -1"/>
+  </xacro:rocker_v0>
+  <!-- Bogie -->
+  <xacro:bogie_v0 prefix="left">
+    <origin xyz="0.125 -0.035 -0.008" rpy="0 0 0"/>
+    <axis xyz="0 0 -1"/>
+  </xacro:bogie_v0>
+  <!-- Wheel -->
+  <xacro:wheel_v0 prefix="left_front" parent="left_bogie_link">
+    <origin xyz="0.125 -0.070 -0.0295" rpy="0 0 ${-M_PI/2}"/>
+    <axis xyz="0 0 -1"/>
+  </xacro:wheel_v0>
+  <xacro:wheel_v0 prefix="left_middle" parent="left_bogie_link">
+    <origin xyz="-0.125 -0.070 -0.0295" rpy="0 0 ${-M_PI/2}"/>
+    <axis xyz="0 0 -1"/>
+  </xacro:wheel_v0>
+  <xacro:wheel_v0 prefix="left_rear" parent="left_rocker_link">
+    <origin xyz="-0.250 -0.105 -0.0325" rpy="0 0 ${-M_PI/2}"/>
+    <axis xyz="0 0 -1"/>
+  </xacro:wheel_v0>
+
+  
+  
+  
+</robot>

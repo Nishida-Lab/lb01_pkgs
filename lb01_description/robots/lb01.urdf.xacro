@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot name="lb01" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find lb01_description)/robots/lb01_basic.urdf.xacro"/>
+
+
+  <joint name="lrf_motor_joint" type="continuous">
+    <origin xyz="0.08857 0 0.05756" rpy="${-M_PI/2} 0 0"/>
+    <parent link="base_link"/>
+    <child link="lrf_motor_link"/>
+    <axis xyz="0 0 -1"/>
+  </joint>
+  <link name="lrf_motor_link"/>
+
+  <joint name="lrf_joint" type="fixed">
+    <origin xyz="0.0675 -0.0023 0" rpy="${M_PI/2} 0 0"/>
+    <parent link="lrf_motor_link"/>
+    <child link="lrf_link"/>
+  </joint>
+  <link name="lrf_link"/>
+</robot>
