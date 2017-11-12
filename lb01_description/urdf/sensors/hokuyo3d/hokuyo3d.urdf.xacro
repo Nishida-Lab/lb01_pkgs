@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find taketic_kame_description)/urdf/common.xacro"/>
+
+  <xacro:macro name="hokuyo3d_v0" params="parent *joint_origin">
+	<joint name="hokuyo3d_joint" type="fixed">
+	  <insert_block name="joint_origin"/>
+	  <parent link="${parent}"/>
+	  <child link="hokuyo3d_link"/>
+	</joint>
+
+	<link name="hokuyo3d_link">
+	  <!-- <visual> -->
+	  <!--   <geometry> -->
+	  <!--     <mesh filename="package://taketic_kame_description/meshes/DAE/sensors/${prefix}_hokuyo3d/${prefix}_hokuyo3d.dae"/> -->
+	  <!--   </geometry> -->
+	  <!-- </visual> -->
+	  <!-- <collision> -->
+	  <!--   <geometry> -->
+	  <!--     <mesh filename="package://taketic_kame_description/meshes/STL/sensors/${prefix}_hokuyo3d/${prefix}_hokuyo3d.stl"/> -->
+	  <!--   </geometry> -->
+	  <!-- </collision> -->
+	  <!-- <inertial> -->
+	  <!--   <origin xyz="0 0 -0.0164"/> -->
+	  <!--   <box_inertial mass="0.4" height="0.07" width="0.07" depth="0.08"/> -->
+	  <!-- </inertial> -->
+	</link>
+  </xacro:macro>
+
+</robot>

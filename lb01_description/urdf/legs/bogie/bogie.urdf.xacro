@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find lb01_description)/urdf/common.xacro"/>
+  <!-- <xacro:include filename="$(find lb01_description)/urdf/bogie/bogie.transmission.xacro"/> -->
+  <!-- <xacro:include filename="$(find lb01_description)/urdf/bogie/bogie.gazebo.xacro"/> -->
+
+  <property name="bogie_radius" value="0.20316"/>
+  <property name="bogie_length" value="0.032"/>
+  <property name="bogie_mass" value="2.0"/>
+  
+  <xacro:macro name="bogie_v0" params="prefix *joint_origin *joint_axis">
+	<joint name="${prefix}_bogie_joint" type="continuous">
+	  <insert_block name="joint_origin"/>
+	  <parent link="${prefix}_rocker_link"/>
+	  <child link="${prefix}_bogie_link"/>
+	  <insert_block name="joint_axis"/>
+	</joint>
+
+	<link name="${prefix}_bogie_link">
+	  <visual>
+	    <geometry>
+	      <mesh filename="package://lb01_description/meshes/visual/legs/bogie/bogie_link.dae"/>
+	    </geometry>
+	  </visual>
+	  <collision>
+        <mesh filename="package://lb01_description/meshes/collision/legs/bogie/bogie_link.STL"/>          
+	  </collision>
+	  <inertial>
+    	<mass value="0.11151246"/>
+	    <inertia ixx="0.00033494" ixy="0.00000012" ixz="0.00000000"
+	    		 iyy="0.00133444" iyz="0.00006524"
+	    		 izz="0.00161857" />
+	  </inertial>
+	</link>
+  </xacro:macro>
+  
+</robot>

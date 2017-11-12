@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find taketic_kame_description)/urdf/common.xacro"/>
+
+  <xacro:macro name="camera_v0" params="prefix parent *joint_origin">
+	<joint name="${prefix}_camera_joint" type="fixed">
+	  <insert_block name="joint_origin"/>
+	  <parent link="${parent}"/>
+	  <child link="${prefix}_camera_link"/>
+	</joint>
+    <joint name="${prefix}_camera_optical_joint" type="fixed">
+      <origin rpy="${M_PI/2} ${M_PI} ${M_PI/2}"/>
+      <parent link="${prefix}_camera_link"/>
+      <child link="${prefix}_camera_optical_frame"/>
+    </joint>
+
+	<link name="${prefix}_camera_link">
+	  <!-- <visual> -->
+	  <!--   <geometry> -->
+	  <!--     <mesh filename="package://taketic_kame_description/meshes/DAE/sensors/${prefix}_camera/${prefix}_camera.dae"/> -->
+	  <!--   </geometry> -->
+	  <!-- </visual> -->
+	  <!-- <collision> -->
+	  <!--   <geometry> -->
+	  <!--     <mesh filename="package://taketic_kame_description/meshes/STL/sensors/${prefix}_camera/${prefix}_camera.stl"/> -->
+	  <!--   </geometry> -->
+	  <!-- </collision> -->
+	  <!-- <inertial> -->
+	  <!--   <origin xyz="0 0 -0.0164"/> -->
+	  <!--   <box_inertial mass="0.4" height="0.07" width="0.07" depth="0.08"/> -->
+	  <!-- </inertial> -->
+	</link>
+    <link name="${prefix}_camera_optical_frame"/>
+  </xacro:macro>
+
+</robot>

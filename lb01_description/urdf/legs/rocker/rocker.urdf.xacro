@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find lb01_description)/urdf/common.xacro"/>
+  <!-- <xacro:include filename="$(find lb01_description)/urdf/rocker/rocker.transmission.xacro"/> -->
+  <!-- <xacro:include filename="$(find lb01_description)/urdf/rocker/rocker.gazebo.xacro"/> -->
+
+  <property name="rocker_radius" value="0.20316"/>
+  <property name="rocker_length" value="0.032"/>
+  <property name="rocker_mass" value="2.0"/>
+  
+  <xacro:macro name="rocker_v0" params="prefix *joint_origin *joint_axis">
+	<joint name="${prefix}_rocker_joint" type="continuous">
+	  <insert_block name="joint_origin"/>
+	  <parent link="base_link"/>
+	  <child link="${prefix}_rocker_link"/>
+	  <insert_block name="joint_axis"/>
+	</joint>
+
+	<link name="${prefix}_rocker_link">
+	  <!-- <visual> -->
+	  <!--   <geometry> -->
+	  <!--     <mesh filename="package://lb01_description/meshes/DAE/rocker/rocker_link.dae"/> -->
+	  <!--   </geometry> -->
+	  <!-- </visual> -->
+	  <!-- <collision> -->
+	  <!--   <origin xyz="0 -0.003 0" rpy="${-M_PI/2} 0 0"/> -->
+	  <!--   <geometry> -->
+	  <!--     <cylinder radius="${rocker_radius}" length="${rocker_length}"/> -->
+	  <!--   </geometry> -->
+	  <!-- </collision> -->
+	  <!-- <inertial> -->
+	  <!--   <origin xyz="0 -0.003 0" rpy="${-M_PI/2} 0 0"/> -->
+	  <!--   <cylinder_inertial mass="${rocker_mass}" -->
+	  <!--   				   radius="${rocker_radius}" length="${rocker_length}"/> -->
+	  <!-- </inertial> -->
+	</link>
+  </xacro:macro>
+  
+</robot>
