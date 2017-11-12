@@ -1,0 +1,26 @@
+<launch>
+  <arg name="use_xacro" default="true"/>
+  <arg name="with_rviz" default="true"/>
+  <arg name="use_gui" default="false"/>
+  <arg name="rviz_cfgs" default="$(find lb01_description)/launch/rviz/default.rviz"/>
+  <arg name="urdf_path" default="$(find lb01_description)/robots/lb01.urdf.xacro"/>
+
+  <group if="$(arg use_xacro)">
+    <param name="robot_description" command="$(find xacro)xacro.py --inorder $(arg urdf_path)"/>
+  </group>
+
+  <group unless="$(arg use_xacro)">
+    <param name="robot_description" textfile="$(arg urdf_path)"/>
+  </group>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="$(arg use_gui)"/>
+  </node>
+
+  <group if="$(arg with_rviz)">
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rviz_cfgs)"/>
+  </group>
+</launch>
+
